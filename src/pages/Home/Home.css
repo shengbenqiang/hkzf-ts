@@ -1,0 +1,23 @@
+.home-con {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.home-router-view {
+    width: 100%;
+    height: calc( 100% - 5rem);
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.home-router-view::-webkit-scrollbar {
+    display: none;
+}
+.home-router-tab-bar {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    border-top: 1px solid #ccc;
+}
+.home-router-select-tabBar {
+    color: #21b97a;
+}

@@ -1,49 +1,63 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 import { TabBar } from 'antd-mobile';
-import {
-    AppOutline,
-    MessageFill,
-    UnorderedListOutline,
-    UserOutline,
-} from 'antd-mobile-icons';
+import SIcon from "../../components/SIcon";
 import { tabBarType } from "../../untils/types";
+import "./Home.css";
 
 const Home = () => {
 
+    const navigate = useNavigate();
     const tabs: tabBarType[] = [
         {
-            key: 'home',
+            key: '/home',
             title: '首页',
-            icon: <AppOutline />,
+            icon: <SIcon icon={"icon-ind"} />,
         },
         {
-            key: 'todo',
-            title: '我的待办',
-            icon: <UnorderedListOutline />,
+            key: '/home/houseList',
+            title: '找房',
+            icon: <SIcon icon={"icon-findHouse"} />,
         },
         {
-            key: 'message',
-            title: '我的消息',
-            icon: <MessageFill />,
+            key: '/home/news',
+            title: '资讯',
+            icon: <SIcon icon={"icon-infom"} />,
         },
         {
-            key: 'personalCenter',
-            title: '个人中心',
-            icon: <UserOutline />,
+            key: '/home/profile',
+            title: '我的',
+            icon: <SIcon icon={"icon-my"} />,
         },
     ]
 
+    const handleTabChange = (key: string) => {
+        setPage(key);
+        navigate(key);
+    }
+
+    const [ page, setPage ] = useState<string>("/home")
+
     return (
-        <div>
-            首页
-            <Outlet />
+        <div className={"home-con"}>
+            <div className={"home-router-view"}>
+                <Outlet />
+            </div>
             {/* 单标签形式不报错，但也随之无法书写 TabBar.Item，已知是类型问题，不知怎么解决*/}
             {/* @ts-ignore */}
-            <TabBar>
+            <TabBar
+                className={"home-router-tab-bar"}
+                onChange={(key) => handleTabChange(key)}
+                defaultActiveKey={page}
+            >
                 {
                     tabs.map(item => (
-                        <TabBar.Item key={item.key} icon={item.icon} title={item.title} />
+                        <TabBar.Item
+                            key={item.key}
+                            icon={item.icon}
+                            title={item.title}
+                            className={ item.key === page ? 'home-router-select-tabBar' : '' }
+                        />
                     ))
                 }
             </TabBar>

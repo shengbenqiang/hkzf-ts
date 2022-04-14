@@ -1,0 +1,24 @@
+.index-navigate-component-con {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+.index-navigate-component-item-con {
+    width: 7rem;
+    height: 7rem;
+    /*background: #21b97a;*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.index-navigate-component-item-img {
+    width: 5rem;
+    height: 5rem;
+}
+.index-navigate-component-item-name {
+    font-size: 1.3rem;
+}
