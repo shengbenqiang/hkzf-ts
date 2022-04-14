@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { TabBar } from 'antd-mobile';
 import SIcon from "../../components/SIcon";
 import { tabBarType } from "../../untils/types";
@@ -8,6 +8,7 @@ import "./Home.css";
 const Home = () => {
 
     const navigate = useNavigate();
+    const { pathname } = useLocation();
     const tabs: tabBarType[] = [
         {
             key: '/home',
@@ -38,6 +39,10 @@ const Home = () => {
 
     const [ page, setPage ] = useState<string>("/home")
 
+    useEffect(() => {
+        setPage(pathname);
+    }, [ pathname ])
+
     return (
         <div className={"home-con"}>
             <div className={"home-router-view"}>
@@ -56,7 +61,7 @@ const Home = () => {
                             key={item.key}
                             icon={item.icon}
                             title={item.title}
-                            className={ item.key === page ? 'home-router-select-tabBar' : '' }
+                            className={ item.key === page ? 'home-router-select-tabBar' : 'home-router-un-select-tabBar' }
                         />
                     ))
                 }
