@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import Map from "./pages/Map";
 import Home from "./pages/Home";
 import News from "./pages/News";
 import Index from "./pages/Index";
@@ -21,6 +22,7 @@ function App() {
                     <Route path={"/home/houseList"} element={<HouseList />} />
                 </Route>
                 <Route path={"/cityList"} element={<CityList />} />
+                <Route path={"/map"} element={<Map />} />
             </Routes>
         </div>
       </Router>

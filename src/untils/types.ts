@@ -6,6 +6,7 @@ export interface tabBarType {
 
 export interface iconProps {
     icon: string;
+    size?: number;
 }
 
 export interface swiperType {
@@ -24,4 +25,19 @@ export interface indexNavigate {
     img: string;
     name: string;
     path: string;
+}
+
+export interface groupType {
+    id: number;
+    desc: string;
+    imgSrc: string;
+    title: string;
+}
+
+export interface newType {
+    date: string;
+    from: string;
+    id: number;
+    imgSrc: string;
+    title: string;
 }

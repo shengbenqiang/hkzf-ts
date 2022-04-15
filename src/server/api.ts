@@ -19,7 +19,29 @@ const api =  {
     async getSwiper() {
         return await http.get("/home/swiper")
             .then((res) => {
-                return res.data
+                return res.data;
+            })
+    },
+
+    async getRentGroup() {
+        return await http.get('/home/groups', {
+            params: {
+                area: "AREA%7C88cff55c-aaa4-e2e0"
+            }
+        })
+            .then((res) => {
+                return res.data;
+            })
+    },
+
+    async getNews() {
+        return await http.get('/home/news', {
+            params: {
+                area: "AREA%7C88cff55c-aaa4-e2e0"
+            }
+        })
+            .then((res) => {
+                return res.data;
             })
     }
 }

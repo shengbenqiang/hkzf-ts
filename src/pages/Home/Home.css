@@ -8,6 +8,7 @@
     height: calc( 100% - 5rem);
     overflow-x: hidden;
     overflow-y: scroll;
+    scrollbar-width: none;
 }
 .home-router-view::-webkit-scrollbar {
     display: none;

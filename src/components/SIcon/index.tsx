@@ -5,7 +5,7 @@ import "../../assets/fonts/iconfont.css";
 
 const SIcon = (props: iconProps) => {
     return (
-        <i className={`iconfont ${props.icon} s-icon-style`}></i>
+        <i className={`iconfont ${props.icon} s-icon-style`} style={{ fontSize: props.size + 'rem' }}></i>
     )
 }
 
