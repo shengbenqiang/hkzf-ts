@@ -43,6 +43,35 @@ const api =  {
             .then((res) => {
                 return res.data;
             })
+    },
+
+    async getLocateInfo(cityName: string) {
+        return await http.get('/area/info', {
+            params: {
+                name: cityName,
+            }
+        })
+            .then((res) => {
+                return res.data;
+            })
+    },
+
+    async getCityDate(level: number) {
+        return await http.get('/area/city', {
+            params: {
+                level
+            }
+        })
+            .then((res) => {
+                return res.data;
+            })
+    },
+
+    async getHotCity() {
+        return await http.get('/area/hot')
+            .then((res) => {
+                return res.data;
+            })
     }
 }
 

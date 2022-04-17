@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Swiper, Grid } from "antd-mobile";
 import { useNavigate } from "react-router-dom";
 import api from "../../server/api";
-import { swiperType, axiosRes, groupType, newType } from "../../untils/types";
+import { swiperType, axiosRes, groupType, newType, locateType } from "../../untils/types";
+import { getCurrentCity } from "../../untils/handleFun";
 import SIcon from "../../components/SIcon";
 import IndexNavigate from "../../components/IndexNavigate";
 import "./index.css";
@@ -11,6 +12,7 @@ const Index = () => {
 
     const navigate = useNavigate()
     const [ news, setNews ] = useState<newType[]>([])
+    const [ cityName, setCityName ] = useState<string>('上海')
     const [ groups, setGroups ] = useState<groupType[]>([])
     const [ swiper, setSwiper ] = useState<swiperType[]>([])
 
@@ -39,10 +41,8 @@ const Index = () => {
     }
 
     const getLocate = () => {
-        navigator.geolocation.getCurrentPosition((position) => {
-            console.log(position)
-        }, (error) => {
-            console.log(error)
+        getCurrentCity().then((res) => {
+            setCityName(res.label)
         })
     }
 
@@ -60,21 +60,23 @@ const Index = () => {
     return (
         <div className={"index-con"}>
             <div className={"index-swiper-con"}>
-                <Swiper loop autoplay>
-                    {
-                        swiper.map((itemSwiper) => (
-                            // @ts-ignore
-                            <Swiper.Item key={itemSwiper.id} className={"index-swiper-item"}>
-                                <img className={"index-swiper-item-img"} src={`http://localhost:8080${itemSwiper.imgSrc}`} alt={itemSwiper.alt}/>
-                            </Swiper.Item>
-                        ))
-                    }
-                </Swiper>
+                {
+                    swiper.length > 0 ? <Swiper loop autoplay>
+                        {
+                            swiper.map((itemSwiper) => (
+                                // @ts-ignore
+                                <Swiper.Item key={itemSwiper.id} className={"index-swiper-item"}>
+                                    <img className={"index-swiper-item-img"} src={`http://localhost:8080${itemSwiper.imgSrc}`} alt={itemSwiper.alt}/>
+                                </Swiper.Item>
+                            ))
+                        }
+                    </Swiper> : <div></div>
+                }
                 <div className={"index-header-navigate-con"}>
                     <div className={"index-header-search-con"}>
                         <div className={"index-header-now-locate-con"} onClick={() => handleNavigate('/cityList')}>
                             <div className={"index-header-now-locate-child"}>
-                                <span>上海</span>
+                                <span>{ cityName }</span>
                                 <SIcon icon={"icon-arrow"} />
                             </div>
                         </div>

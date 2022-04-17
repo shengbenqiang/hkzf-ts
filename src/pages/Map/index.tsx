@@ -4,10 +4,9 @@ import "./Map.css";
 const Map = () => {
 
     const createMap = () => {
-        // const map = new BMap.Map("container")
-        // const point = new BMap.Point(116.404, 39.915)
-        console.log(document.getElementById("container"))
-        // map.centerAndZoom(point, 15)
+        const map = new BMapGL.Map("container")
+        const point = new BMapGL.Point(116.404, 39.915)
+        map.centerAndZoom(point, 15)
     }
 
     useEffect(() => {

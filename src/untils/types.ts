@@ -41,3 +41,27 @@ export interface newType {
     imgSrc: string;
     title: string;
 }
+
+export interface locateType {
+    label: string;
+    pinyin: string;
+    short: string;
+    value: string;
+}
+
+export interface cityAbout {
+    cityIndex: string[];
+    cityList: listItem;
+}
+
+export interface listItem {
+    [key: string]: locateType[]
+}
+
+export interface cityItem {
+    key: string;
+    index: number;
+    isScrolling?: boolean;
+    isVisible?: boolean;
+    style: object;
+}
