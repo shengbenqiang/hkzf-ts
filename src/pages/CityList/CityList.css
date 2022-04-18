@@ -4,10 +4,6 @@
     padding-top: 45px;
     position: relative;
 }
-.city-list-nav-bar {
-    background-color: #f5f6f5!important;
-    margin-top: -45px;
-}
 .city-list-auto-size-room {}
 .city-list-auto-size-room > div::-webkit-scrollbar {
     display: none!important;

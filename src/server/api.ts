@@ -72,6 +72,17 @@ const api =  {
             .then((res) => {
                 return res.data;
             })
+    },
+
+    async getCityHouse(id: string) {
+        return await http.get('/area/map', {
+            params: {
+                id
+            }
+        })
+            .then((res) => {
+                return res.data;
+            })
     }
 }
 

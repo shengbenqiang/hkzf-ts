@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Swiper, Grid } from "antd-mobile";
 import { useNavigate } from "react-router-dom";
 import api from "../../server/api";
-import { swiperType, axiosRes, groupType, newType, locateType } from "../../untils/types";
+import { swiperType, axiosRes, groupType, newType } from "../../untils/types";
 import { getCurrentCity } from "../../untils/handleFun";
 import SIcon from "../../components/SIcon";
 import IndexNavigate from "../../components/IndexNavigate";

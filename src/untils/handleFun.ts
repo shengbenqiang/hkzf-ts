@@ -31,7 +31,6 @@ export const getCurrentCity = () => {
                 try {
                     api.getLocateInfo(res.name).then((result) => {
                         if (result.status === 200) {
-                            console.log("保存数据");
                             localStorage.setItem('hkzf_city', JSON.stringify(result.body))
                             resolve(result.body)
                         }

@@ -1,3 +1,5 @@
+import news from "../pages/News";
+
 export interface tabBarType {
     key: string;
     title: string;
@@ -58,10 +60,39 @@ export interface listItem {
     [key: string]: locateType[]
 }
 
+export interface commonDate {
+    [key: string]: never;
+}
+
 export interface cityItem {
     key: string;
     index: number;
     isScrolling?: boolean;
     isVisible?: boolean;
     style: object;
+}
+
+export interface renderedType {
+    startIndex: number;
+    stopIndex?: number;
+    overscanStartIndex?: number;
+    overscanStopIndex?: number;
+}
+
+export interface NavType {
+    title: string;
+    path: string;
+    isMargin?: boolean;
+}
+
+interface mapLocate {
+    latitude: number;
+    longitude: number;
+}
+
+export interface labelType {
+    coord: mapLocate;
+    count: number;
+    label: string;
+    value: string;
 }

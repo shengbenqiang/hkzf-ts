@@ -1,4 +1,25 @@
 .map-con, #container {
     width: 100%;
     height: 100%;
+    box-sizing: border-box;
+    padding-top: 45px;
+}
+.map-label-con p {
+    margin: 0;
+}
+.map-label-con {
+    width: 7rem;
+    height: 7rem;
+    line-height: 1;
+    display: inline-block;
+    position: absolute;
+    border-radius: 100%;
+    background-color: rgba(12, 181, 106, 0.9);
+    color: #ffffff;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    text-align: center;
+    cursor: pointer;
+}
+.map-label-name {
+    padding: 2.4rem 0 .6rem 0;
 }
