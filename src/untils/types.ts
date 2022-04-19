@@ -1,5 +1,3 @@
-import news from "../pages/News";
-
 export interface tabBarType {
     key: string;
     title: string;
@@ -9,6 +7,8 @@ export interface tabBarType {
 export interface iconProps {
     icon: string;
     size?: number;
+    color?: string;
+    callBack?: () => void;
 }
 
 export interface swiperType {
@@ -60,8 +60,8 @@ export interface listItem {
     [key: string]: locateType[]
 }
 
-export interface commonDate {
-    [key: string]: never;
+export interface commonStr {
+    [key: string]: boolean;
 }
 
 export interface cityItem {
@@ -81,7 +81,6 @@ export interface renderedType {
 
 export interface NavType {
     title: string;
-    path: string;
     isMargin?: boolean;
 }
 
@@ -95,4 +94,36 @@ export interface labelType {
     count: number;
     label: string;
     value: string;
+}
+
+export interface roomType {
+    desc: string;
+    houseCode: string;
+    houseImg: string;
+    price: number;
+    tags: string[];
+    title: string;
+}
+
+export interface searchHeaderType {
+    position: boolean;
+    addressColor?: string;
+    addressSize: number;
+}
+
+export interface titleListType {
+    title: string;
+    type: string;
+}
+
+export interface FilterTitleType {
+    titleSelectedStatus: titleStats;
+    titleClick: (type: string) => void;
+}
+
+export interface titleStats extends commonStr{
+    area: boolean;
+    mode: boolean;
+    price: boolean;
+    more: boolean;
 }

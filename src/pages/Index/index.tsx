@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, Grid } from "antd-mobile";
-import { useNavigate } from "react-router-dom";
 import api from "../../server/api";
 import { swiperType, axiosRes, groupType, newType } from "../../untils/types";
-import { getCurrentCity } from "../../untils/handleFun";
-import SIcon from "../../components/SIcon";
+import SearchHeader from "../../components/SearchHeader";
 import IndexNavigate from "../../components/IndexNavigate";
 import "./index.css";
 
 const Index = () => {
 
-    const navigate = useNavigate()
     const [ news, setNews ] = useState<newType[]>([])
-    const [ cityName, setCityName ] = useState<string>('上海')
     const [ groups, setGroups ] = useState<groupType[]>([])
     const [ swiper, setSwiper ] = useState<swiperType[]>([])
 
@@ -40,20 +36,10 @@ const Index = () => {
         })
     }
 
-    const getLocate = () => {
-        getCurrentCity().then((res) => {
-            setCityName(res.label)
-        })
-    }
-
-    const handleNavigate = (path: string): void => {
-        navigate(path)
-    }
-
     useEffect(() => {
         getNews()
         getSwiper()
-        getLocate()
+        // getLocate()
         getRentGroups()
     }, [])
 
@@ -72,23 +58,7 @@ const Index = () => {
                         }
                     </Swiper> : <div></div>
                 }
-                <div className={"index-header-navigate-con"}>
-                    <div className={"index-header-search-con"}>
-                        <div className={"index-header-now-locate-con"} onClick={() => handleNavigate('/cityList')}>
-                            <div className={"index-header-now-locate-child"}>
-                                <span>{ cityName }</span>
-                                <SIcon icon={"icon-arrow"} />
-                            </div>
-                        </div>
-                        <div className={"index-header-search-entry"} onClick={() => handleNavigate('/search')}>
-                            <SIcon icon={"icon-seach"} />
-                            <span className={"index-header-search-entry-input"}>请输入小区或地址</span>
-                        </div>
-                    </div>
-                    <div className={"index-header-locate-con"} onClick={() => handleNavigate('/map')}>
-                        <SIcon icon={"icon-map"} size={3}/>
-                    </div>
-                </div>
+                <SearchHeader position={true} addressSize={3} />
             </div>
             <div className={"index-navigate-con"}>
                 <IndexNavigate />

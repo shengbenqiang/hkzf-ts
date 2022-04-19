@@ -83,6 +83,17 @@ const api =  {
             .then((res) => {
                 return res.data;
             })
+    },
+
+    async getNeighbourhood(id: string) {
+        return await http.get('/houses', {
+            params: {
+                cityId: id
+            }
+        })
+            .then((res) => {
+                return res.data;
+            })
     }
 }
 

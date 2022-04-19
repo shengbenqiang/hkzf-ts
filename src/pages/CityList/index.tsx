@@ -93,7 +93,7 @@ const CityList = () => {
 
     return (
         <div className={"city-list-con"}>
-            <NavHeader title={"城市选择"} path={"/home"} isMargin={true} />
+            <NavHeader title={"城市选择"} isMargin={true} />
             {/* @ts-ignore */}
             <AutoSizer className={"city-list-auto-size-room"}>
                 {

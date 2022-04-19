@@ -17,62 +17,6 @@
     width: 100%;
     height: 100%;
 }
-.index-header-navigate-con {
-    width: 100%;
-    height: 4rem;
-    position: absolute;
-    top: 3rem;
-    box-sizing: border-box;
-    padding: 0 1rem 0 2.5rem;
-    display: flex;
-    flex-direction: row;
-}
-.index-header-search-con {
-    width: 85%;
-    height: 100%;
-    background-color: #ffffff;
-    border-radius: .4rem;
-    display: flex;
-    flex-direction: row;
-}
-.index-header-now-locate-con {
-    width: 5.5rem;
-    height: 100%;
-    box-sizing: border-box;
-    padding: 1rem 0.5rem 1rem 0.5rem;
-}
-.index-header-now-locate-child {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    border-right: 1px solid #cccccc;
-    box-sizing: border-box;
-}
-.index-header-search-entry {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: calc(100% - 5.1rem);
-    height: 100%;
-    font-size: 1.2rem;
-    color: #cccccc;
-    box-sizing: border-box;
-    padding-left: 0.8rem;
-}
-.index-header-search-entry-input {
-    display: inline-block;
-    margin-left: 1rem;
-    font-size: 1.3rem;
-}
-.index-header-locate-con {
-    width: 15%;
-    height: 100%;
-    text-align: center;
-    line-height: 4rem;
-    color: #ffffff;
-}
 .index-navigate-con {
     width: 100%;
     height: 8rem;

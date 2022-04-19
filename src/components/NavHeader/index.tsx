@@ -8,14 +8,14 @@ const NavHeader = (props: NavType) => {
 
     const navigate = useNavigate();
 
-    const handleOnBack = (path: string) => {
+    const handleOnBack = (path: number) => {
         navigate(path)
     }
 
     return (
         <div>
             {/* @ts-ignore */}
-            <NavBar className={`city-list-nav-bar ${props.isMargin ? 'city-list-nav-margin' : ''}`} onBack={() => handleOnBack(props.path)}>{props.title}</NavBar>
+            <NavBar className={`city-list-nav-bar ${props.isMargin ? 'city-list-nav-margin' : ''}`} onBack={() => handleOnBack(-1)}>{props.title}</NavBar>
         </div>
     )
 }
