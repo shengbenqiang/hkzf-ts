@@ -127,3 +127,7 @@ export interface titleStats extends commonStr{
     price: boolean;
     more: boolean;
 }
+
+export interface filterPickerType {
+    onCancel: () => void
+}

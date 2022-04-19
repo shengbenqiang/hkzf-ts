@@ -1,0 +1,27 @@
+.picker-footer-con {
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    flex-direction: row;
+    border-top: 1px solid #dbdbdb;
+}
+.picker-footer-left-btn {
+    width: 30%;
+    height: 100%;
+    text-align: center;
+    line-height: 5rem;
+    color: #21b97a;
+    background-color: #ffffff;
+    font-size: 1.6rem;
+    letter-spacing: .4rem;
+}
+.picker-footer-right-btn {
+    width: 70%;
+    height: 100%;
+    line-height: 5rem;
+    text-align: center;
+    color: #ffffff;
+    background-color: #21b97a;
+    font-size: 1.6rem;
+    letter-spacing: .4rem;
+}
