@@ -5,6 +5,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+    background-color: #ffffff;
 }
 .filter-item-title-con {
     display: flex;

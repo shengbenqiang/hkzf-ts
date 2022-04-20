@@ -1,0 +1,69 @@
+.filter-more-con {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.filter-more-mask {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+.filter-more-type-room {
+    width: 80vw;
+    height: 100%;
+    background-color: #ffffff;
+    right: 0;
+    position: absolute;
+    top: 0;
+}
+.filter-more-type-item-con {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    box-sizing: border-box;
+    padding: 1rem;
+    width: 100%;
+    height: calc(100% - 5rem);
+}
+.filter-more-type-room::-webkit-scrollbar {
+    display: none;
+}
+.filter-more-common-type-con {
+    width: 100%;
+    min-height: 10rem;
+    border-bottom: 1px solid #dbdbdb;
+    box-sizing: border-box;
+    padding: 0 0 1.5rem 0;
+    margin-bottom: 1rem;
+}
+.filter-more-common-type-con:last-child {
+    border-bottom: none;
+}
+.filter-item-type-title {
+    width: 100%;
+    height: 3rem;
+    text-align: left;
+    line-height: 3rem;
+    font-size: 1.4rem;
+    color: #000000;
+    font-weight: bold;
+}
+.filter-item-type-tag-con {
+    display: flex;
+    flex-direction: row;
+    min-height: 4.9rem;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.filter-item-type-item-tag-con {
+    width: 6.5rem;
+    height: 3rem;
+    line-height: 3rem;
+    text-align: center;
+    border: 1px solid #dbdbdb;
+    border-radius: 0.4rem;
+    margin-bottom: 1rem;
+}

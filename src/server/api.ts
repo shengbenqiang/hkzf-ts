@@ -94,6 +94,17 @@ const api =  {
             .then((res) => {
                 return res.data;
             })
+    },
+
+    async getCondition(id: string) {
+        return await http.get('/houses/condition', {
+            params: {
+                id,
+            }
+        })
+            .then((res) => {
+                return res.data;
+            })
     }
 }
 

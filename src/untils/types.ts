@@ -1,3 +1,5 @@
+import { PickerValue } from "antd-mobile/es/components/picker-view";
+
 export interface tabBarType {
     key: string;
     title: string;
@@ -123,11 +125,54 @@ export interface FilterTitleType {
 
 export interface titleStats extends commonStr{
     area: boolean;
-    mode: boolean;
+    rentType: boolean;
     price: boolean;
     more: boolean;
 }
 
 export interface filterPickerType {
-    onCancel: () => void
+    cols: number;
+    type: string;
+    onCancel: () => void;
+    onSave: (val: PickerValue[] | undefined, type: string | undefined) => void;
+    data: CascadePickerType[];
+    defaultValue: string[];
+}
+
+export interface basePicker {
+    label: string;
+    value: string;
+}
+
+export interface CascadePickerType {
+    label: string;
+    value: string;
+    children?: CascadePickerType[];
+}
+
+export interface conditionType {
+    [key: string]: CascadePickerType | basePicker[];
+}
+
+export interface PickerFooterType {
+    value?: PickerValue[] | undefined;
+    type?: string;
+    onCancel: () => void;
+    onSave: (val: PickerValue[] | undefined, type: string | undefined) => void;
+}
+
+export interface SelectPicker {
+    area: string[];
+    rentType: string[];
+    price: string[];
+    more: string[];
+}
+
+export interface FilterMoreType {
+    floor: basePicker[];
+    oriented: basePicker[];
+    roomType: basePicker[];
+    characteristic: basePicker[];
+    onCancel: () => void;
+    onSave: (val: PickerValue[] | undefined, type: string | undefined) => void;
 }

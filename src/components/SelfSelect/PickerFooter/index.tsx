@@ -1,11 +1,12 @@
 import React from "react";
+import { PickerFooterType } from "../../../untils/types";
 import "./PickerFooter.css";
 
-const PickerFooter = () => {
+const PickerFooter = (props: PickerFooterType) => {
     return (
         <div className={"picker-footer-con"}>
-            <div className={"picker-footer-left-btn"}>取消</div>
-            <div className={"picker-footer-right-btn"}>确定</div>
+            <div className={"picker-footer-left-btn"} onClick={props.onCancel}>取消</div>
+            <div className={"picker-footer-right-btn"} onClick={() => props.onSave(props.value, props.type)}>确定</div>
         </div>
     )
 }

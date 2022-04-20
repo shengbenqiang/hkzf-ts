@@ -12,7 +12,7 @@ const FilterTitle = (props: FilterTitleType) => {
         },
         {
             title: '方式',
-            type: 'mode'
+            type: 'rentType'
         },
         {
             title: '租金',
