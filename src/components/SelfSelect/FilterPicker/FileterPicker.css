@@ -1,6 +1,9 @@
 .filter-picker-con {
     width: 100%;
-    height: 30rem;
+    height: 35rem;
     background-color: #ffffff;
     z-index: 5;
+    position: absolute;
+    left: 0;
+    top: 5rem;
 }

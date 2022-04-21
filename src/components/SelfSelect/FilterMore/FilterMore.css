@@ -67,3 +67,7 @@
     border-radius: 0.4rem;
     margin-bottom: 1rem;
 }
+.filter-selected-item-tag {
+    border-color: #21b97a;
+    background-color: rgba(33, 185, 122, 0.2);
+}

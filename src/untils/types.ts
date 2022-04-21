@@ -67,11 +67,11 @@ export interface commonStr {
 }
 
 export interface cityItem {
-    key: string;
+    key?: string;
     index: number;
     isScrolling?: boolean;
     isVisible?: boolean;
-    style: object;
+    style?: object;
 }
 
 export interface renderedType {
@@ -105,6 +105,7 @@ export interface roomType {
     price: number;
     tags: string[];
     title: string;
+    style?: object;
 }
 
 export interface searchHeaderType {
@@ -155,6 +156,7 @@ export interface conditionType {
 }
 
 export interface PickerFooterType {
+    cancelText: string;
     value?: PickerValue[] | undefined;
     type?: string;
     onCancel: () => void;
@@ -169,10 +171,27 @@ export interface SelectPicker {
 }
 
 export interface FilterMoreType {
+    type: string;
     floor: basePicker[];
     oriented: basePicker[];
     roomType: basePicker[];
+    defaultValue: string[];
     characteristic: basePicker[];
     onCancel: () => void;
     onSave: (val: PickerValue[] | undefined, type: string | undefined) => void;
+}
+
+export interface baseBool {
+    [key: string]: boolean
+}
+export interface baseStrArr {
+    [key: string]: string[]
+}
+
+export interface strObj {
+    [key: string]: string
+}
+
+export interface FilterType {
+    onFilter: (filters: strObj) => void;
 }

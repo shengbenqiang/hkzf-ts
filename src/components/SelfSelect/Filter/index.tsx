@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import FilterTitle from "../FilterTitle";
 import FilterPicker from "../FilterPicker";
 import FilterMore from "../FilterMore";
-import { conditionType, titleStats, SelectPicker, basePicker } from "../../../untils/types";
+import { conditionType, titleStats, SelectPicker, basePicker, baseBool, strObj, FilterType } from "../../../untils/types";
 import { PickerValue } from "antd-mobile/es/components/picker-view";
 import api from "../../../server/api";
 import "./Filter.css";
 
-const Filter = () => {
+const Filter = (props: FilterType) => {
 
     const [ titleSelectedStatus, setTitleSelectedStatus ] = useState<titleStats>({
         more: false,
@@ -29,7 +29,6 @@ const Filter = () => {
     })
 
     const handleTitleClick = (type: string) => {
-        judgeTitle(type)
         if (type === 'area') {
             setCols(3)
             setPickerData([condition[type], condition['subway']])
@@ -37,57 +36,87 @@ const Filter = () => {
             setCols(1)
             setPickerData(condition[type])
         }
+        const newTitleStatus = {...titleSelectedStatus}
+        Object.keys(selectPicker).forEach((item) => {
+            if (item === type) {
+                newTitleStatus[item] = true
+            } else {
+                const result: baseBool = getTitleSelected(item, getItemSelectedValue(item))
+                Object.assign(newTitleStatus, result)
+            }
+        })
+        setTitleSelectedStatus(newTitleStatus)
         setOpenType(type)
     }
     
     const onCancel = () => {
-        const newTitleStatus = {...titleSelectedStatus}
-        if (openType === 'area' && (selectPicker[openType].length === 2 && selectPicker[openType][0] === 'area')) {
-            newTitleStatus[openType] = false
-        } else if (openType === 'rentType' && selectPicker[openType][0] === 'null') {
-            newTitleStatus[openType] = false
-        } else if (openType === 'price' && selectPicker[openType][0] === 'null') {
-            newTitleStatus[openType] = false
-        } else if (openType === 'price') {
-            console.log('执行了')
-        }
-        setTitleSelectedStatus(newTitleStatus)
+        const result = getTitleSelected(openType, getItemSelectedValue(openType))
+        setTitleSelectedStatus({ ...titleSelectedStatus, ...result })
         setOpenType('')
     }
 
     const onSave = (val?: PickerValue[] | undefined, type?: string) => {
+        const result = getTitleSelected(openType, val as string[])
+        setTitleSelectedStatus({...titleSelectedStatus, ...result})
         setSelectPicker({
             ...selectPicker,
             [type as string]: val
         })
         setOpenType('')
+        const filter: strObj = {}
+        const newSelectValue: SelectPicker = {
+            ...selectPicker,
+            [type as string]: val
+        }
+        const areaKey: string = newSelectValue.area[0]
+        let areaValue: string = 'null'
+        if (newSelectValue.area.length === 2) {
+            areaValue = newSelectValue.area[1]
+        } else if (newSelectValue.area.length === 4) {
+            areaValue = newSelectValue.area[2] !== 'null' ? newSelectValue.area[3] !== 'null' ? newSelectValue.area[3] : newSelectValue.area[2] : newSelectValue.area[1]
+        }
+        filter[areaKey] = areaValue
+        filter['rentType'] = newSelectValue.rentType[0]
+        filter['price'] = newSelectValue.price[0]
+        filter['more'] = newSelectValue.more.join(',')
+        props.onFilter(filter)
     }
 
-    const judgeTitle = (type: string) => {
-        const newTitleStatus = {...titleSelectedStatus}
-        Object.keys(newTitleStatus).forEach((itemStatus) => {
-                if (itemStatus === type) {
-                    newTitleStatus[itemStatus] = true
-                    return
-                }
-                if (itemStatus === 'area' && (selectPicker[itemStatus].length !== 2 || selectPicker[itemStatus][0] !== 'area')) {
-                    newTitleStatus[itemStatus] = true
-                } else if (itemStatus === 'rentType' && selectPicker[itemStatus][0] !== 'null') {
-                    newTitleStatus[itemStatus] = true
-                } else if (itemStatus === 'price' && selectPicker[itemStatus][0] !== 'null') {
-                    newTitleStatus[itemStatus] = true
-                } else if (itemStatus === 'price') {
-                    console.log('执行了')
-                }
-            }
-        )
-        setTitleSelectedStatus(newTitleStatus)
+    // 后续需要修改类型
+    const getTitleSelected = (title: string, value: string[]): titleStats => {
+        const obj: titleStats = {} as titleStats
+        const selectedVal = value.toString()
+        if (title === 'area' && (selectedVal !== 'area,null,,' && selectedVal !== 'area,null')) {
+            obj[title] = true
+        } else if (title === 'mode' && selectedVal !== 'null') {
+            obj[title] = true
+        } else if (title === 'price' && selectedVal !== 'null') {
+            obj[title] = true
+        } else if (title === 'more' && value.length > 0) {
+            obj[title] = true
+        } else {
+            obj[title] = false
+        }
+        return obj
+    }
+
+    const getItemSelectedValue = (type: string): string[] => {
+        let obj: string[] = []
+        if (type === "area") {
+            obj = selectPicker.area
+        } else if (type === "rentType") {
+            obj = selectPicker.rentType
+        } else if (type === "price") {
+            obj = selectPicker.price
+        } else if (type === "more") {
+            obj = selectPicker.more
+        }
+        return obj
     }
 
     const getAllCondition = () => {
         const cityInfo = JSON.parse(localStorage.getItem('hkzf_city') as string)
         api.getCondition(cityInfo.value).then((res) => {
-            console.log(res)
             if (res.status === 200) {
                 setCondition(res.body)
             }
@@ -119,8 +148,10 @@ const Filter = () => {
                         oriented={condition.oriented as basePicker[]}
                         floor={condition.floor as basePicker[]}
                         roomType={condition.roomType as basePicker[]}
+                        defaultValue={selectPicker.more}
                         onSave={onSave}
                         onCancel={onCancel}
+                        type={openType}
                     /> :
                     null
                 }

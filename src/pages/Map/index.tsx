@@ -3,6 +3,7 @@ import NavHeader from "../../components/NavHeader";
 import api from "../../server/api";
 import "./Map.css";
 import { labelType, roomType } from "../../untils/types";
+import HouseItem from "../../components/HouseItem";
 import { Toast } from "antd-mobile";
 
 const labelStyle = {
@@ -154,27 +155,15 @@ const Map = () => {
                 <div className={"map-house-list-room"}>
                     {
                         neighbourhood.map((itemHouse) => (
-                            <div className={"map-house-list-item-con"} key={itemHouse.houseCode}>
-                                <div className={"map-house-list-item-room"}>
-                                    <div className={"map-house-list-item-img"}>
-                                        <img src={`http://localhost:8080${itemHouse.houseImg}`} alt={itemHouse.desc}/>
-                                    </div>
-                                    <div className={"map-house-list-info-con"}>
-                                        <div className={"map-house-list-info-special-item map-house-list-info-title"}>{ itemHouse.title }</div>
-                                        <div className={"map-house-list-info-common-item map-house-list-info-desc"}> { itemHouse.desc } </div>
-                                        <div className={"map-house-list-info-common-item map-house-list-info-tag"}>
-                                            {
-                                                itemHouse.tags.map((itemTag) => (
-                                                    <div className={"map-house-list-info-item-tag-con"} key={itemTag}>
-                                                        { itemTag }
-                                                    </div>
-                                                ))
-                                            }
-                                        </div>
-                                        <div className={"map-house-list-info-special-item map-house-list-info-price"}> <span>{itemHouse.price}</span> 元/月 </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <HouseItem
+                                key={itemHouse.houseCode}
+                                houseCode={itemHouse.houseCode}
+                                desc={itemHouse.desc}
+                                houseImg={itemHouse.houseImg}
+                                price={itemHouse.price}
+                                tags={itemHouse.tags}
+                                title={itemHouse.title}
+                            />
                         ))
                     }
                 </div>

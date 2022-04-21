@@ -1,4 +1,5 @@
 import axios from "axios";
+import { strObj } from "../untils/types";
 
 const http = axios.create({
     timeout: 5000,
@@ -100,6 +101,20 @@ const api =  {
         return await http.get('/houses/condition', {
             params: {
                 id,
+            }
+        })
+            .then((res) => {
+                return res.data;
+            })
+    },
+
+    async getHouseList(cityId: string, filters: strObj, start: number, end: number) {
+        return await http.get('/houses', {
+            params: {
+                cityId,
+                ...filters,
+                start,
+                end
             }
         })
             .then((res) => {

@@ -1,0 +1,79 @@
+.map-house-list-item-con {
+    width: 100%;
+    height: 12rem;
+    box-sizing: border-box;
+    padding: .8rem;
+}
+.map-house-list-item-con:last-child > div {
+    border-bottom: none;
+}
+.map-house-list-item-room {
+    width: 100%;
+    height: 100%;
+    border-bottom: 1px solid #e6e6e6;
+    box-sizing: border-box;
+    padding-bottom: .5rem;
+    display: flex;
+}
+.map-house-list-item-img {
+    width: 13rem;
+    height: 100%;
+}
+.map-house-list-item-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.map-house-list-info-con {
+    width: calc(100% - 13rem);
+    height: 100%;
+    box-sizing: border-box;
+    padding-left: .5rem;
+}
+.map-house-list-info-con > div {
+    width: 100%;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.map-house-list-info-special-item {
+    height: 2.9rem;
+    line-height: 2.9rem;
+}
+.map-house-list-info-title {
+    font-size: 1.5rem;
+    color: #000;
+    font-weight: bold;
+}
+.map-house-list-info-common-item {
+    height: 2rem;
+    line-height: 2rem;
+}
+.map-house-list-info-desc {
+    color: #cccccc;
+    font-size: 1.2rem;
+}
+.map-house-list-info-common-item {
+    height: 2rem;
+    line-height: 2rem;
+}
+.map-house-list-info-item-tag-con {
+    width: 5rem;
+    height: 100%;
+    background-color: rgba(18, 150, 219, 0.4);
+    text-align: center;
+    line-height: 2rem;
+    color: rgb(18, 150, 219);
+    border-radius: .2rem;
+}
+.map-house-list-info-price {
+    color: #DE7E64;
+    font-size: 1rem;
+}
+.map-house-list-info-price span {
+    font-size: 1.6rem;
+    font-weight: bold;
+    display: inline-block;
+    box-sizing: border-box;
+}

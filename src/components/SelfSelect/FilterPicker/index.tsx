@@ -32,7 +32,13 @@ const FilterPicker = (props: filterPickerType) => {
                     }}
                 />
             }
-            <PickerFooter onCancel={props.onCancel} onSave={props.onSave} value={pickerValue} type={props.type} />
+            <PickerFooter
+                onCancel={props.onCancel}
+                onSave={props.onSave}
+                value={pickerValue}
+                type={props.type}
+                cancelText={'取消'}
+            />
         </div>
     )
 }
