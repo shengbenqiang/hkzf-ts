@@ -14,17 +14,18 @@
     padding: 0 1rem;
 }
 .home-list-house-list-con {
-    width: 100%;
-    height: calc(100% - 10rem);
-    overflow-x: hidden;
-    overflow-y: scroll;
+    padding: 0 1.5rem;
 }
-.home-list-house-list-con::-webkit-scrollbar {
-    display: none;
-}
+/*.home-list-house-list-con::-webkit-scrollbar {*/
+/*    display: none;*/
+/*}*/
 .house-list-item-null {
     line-height: 12rem;
     text-align: center;
     height: 11rem;
     background-color: #f6f5f6;
+}
+.house-zero-room {
+    width: 100%;
+    height: 100%;
 }

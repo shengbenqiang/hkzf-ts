@@ -29,6 +29,7 @@ const Filter = (props: FilterType) => {
     })
 
     const handleTitleClick = (type: string) => {
+        document.body.className = 'body-fix'
         if (type === 'area') {
             setCols(3)
             setPickerData([condition[type], condition['subway']])
@@ -50,12 +51,14 @@ const Filter = (props: FilterType) => {
     }
     
     const onCancel = () => {
+        document.body.className = ''
         const result = getTitleSelected(openType, getItemSelectedValue(openType))
         setTitleSelectedStatus({ ...titleSelectedStatus, ...result })
         setOpenType('')
     }
 
     const onSave = (val?: PickerValue[] | undefined, type?: string) => {
+        document.body.className = ''
         const result = getTitleSelected(openType, val as string[])
         setTitleSelectedStatus({...titleSelectedStatus, ...result})
         setSelectPicker({

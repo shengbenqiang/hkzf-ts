@@ -1,0 +1,13 @@
+.no-house-con {
+    margin-top: 12rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.no-house-con img {
+    width: 12rem;
+    margin-bottom: 2rem;
+}
+.no-house-word {
+    color: #666;
+}

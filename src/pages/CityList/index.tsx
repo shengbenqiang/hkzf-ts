@@ -81,7 +81,7 @@ const CityList = () => {
         const HOUSE_CITY: string[] = ['北京', '上海', '广州', '深圳']
         if (HOUSE_CITY.indexOf(cityInfo.label) > -1) {
             localStorage.setItem('hkzf_city', JSON.stringify({ label: cityInfo.label, value: cityInfo.value }))
-            navigate('/home')
+            navigate(-1)
         } else {
             Toast.show('该城市暂无房源')
         }

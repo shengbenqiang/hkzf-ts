@@ -1,4 +1,5 @@
 import { PickerValue } from "antd-mobile/es/components/picker-view";
+import {ReactNode} from "react";
 
 export interface tabBarType {
     key: string;
@@ -194,4 +195,13 @@ export interface strObj {
 
 export interface FilterType {
     onFilter: (filters: strObj) => void;
+}
+
+export interface StickyType {
+    children: ReactNode,
+    stickyHeight: number
+}
+
+export interface EmptyType {
+    emptyWord: string;
 }

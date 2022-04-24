@@ -21,3 +21,6 @@ ul {
   margin: 0;
   list-style: none;
 }
+.body-fix {
+  overflow: hidden;
+}
