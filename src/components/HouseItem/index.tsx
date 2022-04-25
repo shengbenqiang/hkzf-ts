@@ -1,10 +1,18 @@
 import React from "react";
 import { roomType } from "../../untils/types";
+import { useNavigate } from "react-router-dom";
 import "./HouseItem.css";
 
 const HouseItem = (props: roomType) => {
+
+    const navigate = useNavigate()
+
+    const handleHouseClick = () => {
+        navigate(`/houseDetail/${props.houseCode}`)
+    }
+
     return (
-        <div className={"map-house-list-item-con"} key={props.houseCode}>
+        <div className={"map-house-list-item-con"} key={props.houseCode} onClick={handleHouseClick}>
             <div className={"map-house-list-item-room"}>
                 <div className={"map-house-list-item-img"}>
                     <img src={`http://localhost:8080${props.houseImg}`} alt={props.desc}/>

@@ -15,7 +15,13 @@ const NavHeader = (props: NavType) => {
     return (
         <div>
             {/* @ts-ignore */}
-            <NavBar className={`city-list-nav-bar ${props.isMargin ? 'city-list-nav-margin' : ''}`} onBack={() => handleOnBack(-1)}>{props.title}</NavBar>
+            <NavBar
+                className={`city-list-nav-bar ${props.className} ${props.isMargin ? 'city-list-nav-margin' : ''}`}
+                onBack={() => handleOnBack(-1)}
+                right={props.right ? props.right : ''}
+            >
+                {props.title}
+            </NavBar>
         </div>
     )
 }

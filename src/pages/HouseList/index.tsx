@@ -97,23 +97,22 @@ const HouseList = () => {
         return (
             <div className={"home-list-house-list-con"}>
                 {/* @ts-ignore */}
-                <InfiniteLoader loadMoreRows={loadMoreRows} isRowLoaded={isRowLoaded} rowCount={houseCount}>
+                <InfiniteLoader loadMoreRows={loadMoreRows} isRowLoaded={isRowLoaded} rowCount={houseList.length}>
                     {({ onRowsRendered, registerChild }) => (
                         // @ts-ignore
                         <WindowScroller>
                             {({ height, isScrolling, scrollTop }) => (
                                 // @ts-ignore
-                                <AutoSizer>
+                                <AutoSizer disableHeight>
                                     {({ width }) => (
                                         // @ts-ignore
                                         <List
                                             autoHeight
                                             width={width}
                                             height={height}
-                                            rowCount={houseCount ? houseCount : 0}
+                                            rowCount={houseList.length}
                                             rowHeight={120}
                                             rowRenderer={rowRendererList}
-                                            isScrolling={isScrolling}
                                             scrollTop={scrollTop}
                                             onRowsRendered={onRowsRendered}
                                             ref={registerChild}

@@ -4,6 +4,7 @@ import FilterPicker from "../FilterPicker";
 import FilterMore from "../FilterMore";
 import { conditionType, titleStats, SelectPicker, basePicker, baseBool, strObj, FilterType } from "../../../untils/types";
 import { PickerValue } from "antd-mobile/es/components/picker-view";
+import { Spring, animated } from "react-spring";
 import api from "../../../server/api";
 import "./Filter.css";
 
@@ -126,6 +127,29 @@ const Filter = (props: FilterType) => {
         })
     }
 
+    const renderMask = () => {
+        const isHide: boolean = openType === '' || openType === 'more'
+        return (
+            <Spring
+                from={{ display: "none", opacity: 0 }}
+                to={[
+                    { opacity: isHide ? 0 : 1,  display: '' },
+                    { opacity: isHide ? 0 : 1,  display: isHide ? 'none' : '', }
+                ]}
+            >
+                {styles => {
+                    return (
+                        <animated.div
+                            style={styles}
+                            onClick={onCancel}
+                            className={"filter-con-mask"}
+                        ></animated.div>
+                    )
+                }}
+            </Spring>
+        )
+    }
+
     useEffect(() => {
         getAllCondition()
     }, [])
@@ -160,12 +184,7 @@ const Filter = (props: FilterType) => {
                 }
             </div>
             {
-                openType === 'area' || openType === 'rentType' || openType === 'price' ?
-                <div
-                    onClick={onCancel}
-                    className={"filter-con-mask"}
-                ></div> :
-                null
+                renderMask()
             }
         </div>
     )

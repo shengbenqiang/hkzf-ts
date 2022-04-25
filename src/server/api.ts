@@ -120,6 +120,13 @@ const api =  {
             .then((res) => {
                 return res.data;
             })
+    },
+
+    async getHouseInfo(houseId: string) {
+        return await http.get(`/houses/${houseId}`)
+            .then((res) => {
+                return res.data;
+            })
     }
 }
 

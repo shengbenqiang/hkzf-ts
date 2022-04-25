@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Profile from "./pages/Profile";
 import CityList from "./pages/CityList";
 import HouseList from "./pages/HouseList";
+import HouseDetail from "./pages/HouseDetail";
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
                     <Route path={"/home/profile"} element={<Profile />} />
                     <Route path={"/home/houseList"} element={<HouseList />} />
                 </Route>
+                <Route path={"/houseDetail/:houseId"} element={<HouseDetail />} />
                 <Route path={"/cityList"} element={<CityList />} />
                 <Route path={"/map"} element={<Map />} />
             </Routes>

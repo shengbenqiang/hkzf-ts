@@ -85,6 +85,8 @@ export interface renderedType {
 export interface NavType {
     title: string;
     isMargin?: boolean;
+    className?: string;
+    right?: ReactNode;
 }
 
 interface mapLocate {
@@ -185,10 +187,6 @@ export interface FilterMoreType {
 export interface baseBool {
     [key: string]: boolean
 }
-export interface baseStrArr {
-    [key: string]: string[]
-}
-
 export interface strObj {
     [key: string]: string
 }
@@ -204,4 +202,14 @@ export interface StickyType {
 
 export interface EmptyType {
     emptyWord: string;
+}
+
+export interface PackageType {
+    id: number;
+    name: string;
+    icon: string;
+}
+
+export interface HousePackageType {
+    list: string[];
 }
