@@ -1,0 +1,93 @@
+.profile-con {
+    width: 100%;
+    height: 100%;
+}
+.profile-header-room {
+    width: 100%;
+    height: 23rem;
+    position: relative;
+}
+.profile-header-room img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.profile-use-room {
+    width: 80%;
+    height: 18rem;
+    position: absolute;
+    top: 13rem;
+    left: calc(20% / 2);
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .4);
+    border-radius: .2rem;
+}
+.profile-header-user-avatar-room {
+    width: 7rem;
+    height: 7rem;
+    border-radius: 100%;
+    transform: translateX(13.5rem) translateY(-3.5rem);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .4);
+    background-color: #ffffff;
+}
+.profile-header-user-name {
+    width: 100%;
+    height: 6rem;
+    font-size: 1.2rem;
+    color: #666;
+    line-height: 6rem;
+    text-align: center;
+    margin-top: -2rem;
+}
+.profile-header-user-login-name-room {
+    width: 100%;
+    height: 6rem;
+    font-size: 1.2rem;
+    color: #666;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.profile-header-user-operate {
+    width: 100%;
+    height: 5rem;
+    line-height: 5rem;
+    text-align: center;
+}
+.profile-header-operate-room {
+    width: 100%;
+    height: 15rem;
+    /*border: 1px solid #cccccc;*/
+    margin-top: 10rem;
+}
+.profile-operate-item-room {
+    width: 100%;
+    height: 7.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.profile-operate-item-name {
+    margin-top: 1rem;
+}
+.profile-add-us-room {
+    width: 100%;
+    height: 12rem;
+    margin-top: 2rem;
+}
+.profile-add-us-room img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.profile-header-user-is-login-operate {
+    color: #666666;
+}
+.profile-header-user-is-login-operate-arrow {
+    transform: rotate(-90deg);
+    display: inline-block;
+    margin-left: .3rem;
+    user-select: none;
+}

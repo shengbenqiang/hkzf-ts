@@ -1,5 +1,6 @@
 import axios from "axios";
-import { strObj } from "../untils/types";
+import {loginData, strObj} from "../untils/types";
+import { getToken } from "../untils/auth";
 
 const http = axios.create({
     timeout: 5000,
@@ -7,6 +8,8 @@ const http = axios.create({
 });
 
 http.interceptors.request.use((config) => {
+    // @ts-ignore
+    config.headers.Authorization = getToken()
     return config
 })
 
@@ -124,6 +127,30 @@ const api =  {
 
     async getHouseInfo(houseId: string) {
         return await http.get(`/houses/${houseId}`)
+            .then((res) => {
+                return res.data;
+            })
+    },
+
+    async userLogin(user: loginData) {
+        return await http.post('/user/login', {
+            username: user.account,
+            password: user.password
+        })
+            .then((res) => {
+                return res.data;
+            })
+    },
+
+    async getUser() {
+        return await http.get('/user')
+            .then((res) => {
+                return res.data;
+            })
+    },
+
+    async logout() {
+        return await http.post('/user/logout')
             .then((res) => {
                 return res.data;
             })

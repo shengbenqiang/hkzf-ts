@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-d
 import Map from "./pages/Map";
 import Home from "./pages/Home";
 import News from "./pages/News";
+import Login from "./pages/Login";
 import Index from "./pages/Index";
 import Profile from "./pages/Profile";
 import CityList from "./pages/CityList";
@@ -25,6 +26,7 @@ function App() {
                 <Route path={"/houseDetail/:houseId"} element={<HouseDetail />} />
                 <Route path={"/cityList"} element={<CityList />} />
                 <Route path={"/map"} element={<Map />} />
+                <Route path={"/login"} element={<Login />} />
             </Routes>
         </div>
       </Router>

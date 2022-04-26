@@ -1,0 +1,19 @@
+.login-con {
+    width: 100%;
+    height: 100%;
+}
+.login-form-room {
+    width: 100%;
+    height: calc(100% - 4.5rem);
+    box-sizing: border-box;
+    padding: 1rem 1.5rem 0 1.5rem;
+}
+.handle-over-line {
+    border-bottom: none!important;
+}
+.login-un-register {
+    margin-top: 3rem;
+    text-align: center;
+    color: #666666;
+    font-size: 1.4rem;
+}

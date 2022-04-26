@@ -185,10 +185,10 @@ export interface FilterMoreType {
 }
 
 export interface baseBool {
-    [key: string]: boolean
+    [key: string]: boolean;
 }
 export interface strObj {
-    [key: string]: string
+    [key: string]: string;
 }
 
 export interface FilterType {
@@ -196,8 +196,8 @@ export interface FilterType {
 }
 
 export interface StickyType {
-    children: ReactNode,
-    stickyHeight: number
+    children: ReactNode;
+    stickyHeight: number;
 }
 
 export interface EmptyType {
@@ -212,4 +212,21 @@ export interface PackageType {
 
 export interface HousePackageType {
     list: string[];
+}
+
+export interface locate {
+    latitude: string;
+    longitude: string;
+}
+
+export interface loginData {
+    account: string;
+    password: string;
+}
+
+export interface userMenuType {
+    id: number;
+    name: string;
+    iconfont: string;
+    to?: string;
 }
