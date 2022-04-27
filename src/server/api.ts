@@ -1,6 +1,6 @@
 import axios from "axios";
 import {loginData, strObj} from "../untils/types";
-import { getToken } from "../untils/auth";
+import {getToken, removeToken} from "../untils/auth";
 
 const http = axios.create({
     timeout: 5000,
@@ -8,12 +8,18 @@ const http = axios.create({
 });
 
 http.interceptors.request.use((config) => {
-    // @ts-ignore
-    config.headers.Authorization = getToken()
+    if (config.url?.startsWith('/user') && !config.url?.startsWith('/user/login') && !config.url?.startsWith('/user/registered')) {
+        // @ts-ignore
+        config.headers.Authorization = getToken()
+    }
     return config
 })
 
 http.interceptors.response.use((response) => {
+    const { status } = response.data
+    if (status === 400) {
+        removeToken()
+    }
     return response
 }, function (error) {
     return Promise.reject(error)
@@ -151,6 +157,53 @@ const api =  {
 
     async logout() {
         return await http.post('/user/logout')
+            .then((res) => {
+                return res.data;
+            })
+    },
+
+    async getFavoritesInfo(id: string) {
+        return await http.get(`/user/favorites/${id}`)
+            .then((res) => {
+                return res.data;
+            })
+    },
+
+    async cancelFavorites(id: string) {
+        return await http.delete(`/user/favorites/${id}`)
+            .then((res) => {
+                return res.data;
+            })
+    },
+
+    async addFavorites(id: string) {
+        return await http.post(`/user/favorites/${id}`)
+            .then((res) => {
+                return res.data;
+            })
+    },
+
+    async getFavoritesList() {
+        return await http.get('/user/favorites')
+            .then((res) => {
+                return res.data;
+            })
+    },
+
+    async getReleaseRent() {
+        return await http.get('/user/houses')
+            .then((res) => {
+                return res.data;
+            })
+    },
+
+    async getAreaList(name: string, id: string) {
+        return await http.get('/area/community', {
+            params: {
+                name,
+                id
+            }
+        })
             .then((res) => {
                 return res.data;
             })

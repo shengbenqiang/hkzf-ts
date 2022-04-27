@@ -1,0 +1,13 @@
+.my-collect-con {
+    width: 100%;
+    height: 100%;
+}
+.my-collect-list-room {
+    width: 100%;
+    height: calc(100% - 4.5rem);
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.my-collect-list-room::-webkit-scrollbar {
+    display: none;
+}

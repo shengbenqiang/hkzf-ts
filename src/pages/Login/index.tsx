@@ -1,18 +1,20 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import NavHeader from "../../components/NavHeader";
 import { Form, Input, Button, Toast } from "antd-mobile";
 import { loginData } from "../../untils/types";
 import api from "../../server/api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { setToken } from "../../untils/auth";
 import "./Login.css";
 
 const Login = () => {
 
     const navigate = useNavigate()
+    const location = useLocation()
 
     const [ account, setAccount ] = useState<string>('')
     const [ password, setPassword ] = useState<string>('')
+    const [ fromPath, setFromPath ] = useState<string>('')
 
     const changeAccount = (e: string) => {
         setAccount(e)
@@ -26,12 +28,21 @@ const Login = () => {
         api.userLogin(values).then((res) => {
             if (res.status === 200) {
                 setToken(res.body.token)
-                navigate(-1)
+                if (fromPath) {
+                    navigate(fromPath, { replace: true })
+                } else {
+                    navigate(-1)
+                }
             } else {
                 Toast.show(res.description)
             }
         })
     }
+
+    useEffect(() => {
+        const newLocation: any = location
+        setFromPath(newLocation.state.from.pathname)
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <div className={"login-con"}>

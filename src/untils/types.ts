@@ -1,5 +1,5 @@
 import { PickerValue } from "antd-mobile/es/components/picker-view";
-import {ReactNode} from "react";
+import { ReactNode, Component } from "react";
 
 export interface tabBarType {
     key: string;
@@ -202,6 +202,8 @@ export interface StickyType {
 
 export interface EmptyType {
     emptyWord: string;
+    linkWord?: string;
+    linkPath?: string;
 }
 
 export interface PackageType {
@@ -229,4 +231,12 @@ export interface userMenuType {
     name: string;
     iconfont: string;
     to?: string;
+}
+
+// export interface AuthRouteType {
+//     componentPath: string;
+//     component: JSX.Element;
+// }
+export interface AuthRouteType {
+    component: JSX.Element;
 }

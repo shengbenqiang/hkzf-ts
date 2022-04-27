@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import api from "../../server/api";
 import HousePackage from "../../components/HousePackage";
 import NavHeader from "../../components/NavHeader";
 import SIcon from "../../components/SIcon";
 import HouseItem from "../../components/HouseItem";
-import { Swiper } from "antd-mobile";
+import {Swiper, Modal, Toast} from "antd-mobile";
 import { locate, roomType } from "../../untils/types";
+import { isAuth } from "../../untils/auth";
 import "./HouseDetail.css";
 
 const HouseDetail = () => {
@@ -39,6 +40,8 @@ const HouseDetail = () => {
     ]
 
     const params = useParams()
+    const navigate = useNavigate()
+    const locate = useLocation()
     const [ floor, setFloor ] = useState<string>('')
     const [ tags, setTags ] = useState<string[]>([])
     const [ houseOriented, setSouseOriented ] = useState<string[]>([])
@@ -50,6 +53,7 @@ const HouseDetail = () => {
     const [ houseImg, setHouseImg ] = useState<string[]>([])
     const [ packageList, setPackageList ] = useState<string[]>([])
     const [ desc, setDesc ] = useState<string>('')
+    const [ favorites, setFavorites ] = useState<boolean>(false)
 
     const getHouseInfo = () => {
         api.getHouseInfo(params.houseId as string).then((res) => {
@@ -105,9 +109,52 @@ const HouseDetail = () => {
         })
         map.addOverlay(label)
     }
+
+    const checkFavorites = () => {
+        api.getFavoritesInfo(params.houseId as string).then((res) => {
+            if (res.status === 200) {
+                setFavorites(res.body.isFavorite)
+            }
+        })
+    }
+
+    const handleCollect = async () => {
+        const isLogin = isAuth()
+        if (!isLogin) {
+            const result = await Modal.confirm({
+                content: '登录后才能收藏房源，是否去登录？',
+            })
+            if (result) {
+                navigate('/login', { state: { from: locate } })
+            }
+            return
+        }
+        if (favorites) {
+            api.cancelFavorites(params.houseId as string).then((res) => {
+                if (res.status === 200) {
+                    Toast.show('已取消收藏')
+                    setFavorites(false)
+                } else {
+                    Toast.show('登录超时，请重新登录')
+                    setFavorites(false)
+                }
+            })
+        } else {
+            api.addFavorites(params.houseId as string).then((res) => {
+                if (res.status === 200) {
+                    Toast.show('收藏成功')
+                    setFavorites(true)
+                } else {
+                    Toast.show('登录超时，请重新登录')
+                    setFavorites(false)
+                }
+            })
+        }
+    }
     
     useEffect(() => {
         getHouseInfo()
+        checkFavorites()
     }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
@@ -225,6 +272,14 @@ const HouseDetail = () => {
                         />
                     ))
                 }
+            </div>
+            <div className={"house-detail-operate-room"}>
+                <div className={"house-detail-item-btn-operate-room"} onClick={handleCollect}>
+                    <img className={"house-detail-item-collect-start"} alt={"已收藏"} src={`http://localhost:8080/${favorites ? 'img/star.png' : 'img/unstar.png'}`} />
+                    { favorites ? '已收藏' : '收藏' }
+                </div>
+                <div className={"house-detail-item-btn-operate-room"}>在线咨询</div>
+                <div className={"house-detail-item-btn-operate-room"}>电话预约</div>
             </div>
         </div>
     )

@@ -13,7 +13,7 @@ const Profile = () => {
     const navigate = useNavigate()
     const defaultUserAvatar: string = 'http://localhost:8080/img/profile/avatar.png'
     const menus: userMenuType[] = [
-        { id: 1, name: '我的收藏', iconfont: 'icon-coll', to: '/favorate' },
+        { id: 1, name: '我的收藏', iconfont: 'icon-coll', to: '/collect' },
         { id: 2, name: '我的出租', iconfont: 'icon-ind', to: '/rent' },
         { id: 3, name: '看房记录', iconfont: 'icon-record' },
         { id: 4, name: '成为房主', iconfont: 'icon-identity' },
@@ -26,7 +26,7 @@ const Profile = () => {
     const [ userName, setUserName ] = useState<string>('')
 
     const handleGridItemClick = (url: string) => {
-        console.log(url)
+        navigate(url)
     }
 
     const getUserInfo = () => {
@@ -36,6 +36,8 @@ const Profile = () => {
                     const { avatar, nickname } = res.body
                     setAvatar(avatar)
                     setUserName(nickname)
+                } else {
+                    setIsLogin(false)
                 }
             })
         }
@@ -50,8 +52,12 @@ const Profile = () => {
             content: '确认退出',
         })
         if (result) {
-            removeToken()
-            setIsLogin(false)
+            api.logout().then((res) => {
+                if (res.status === 200) {
+                    removeToken()
+                    setIsLogin(false)
+                }
+            })
         }
     }
 

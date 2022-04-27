@@ -11,3 +11,8 @@
 .no-house-word {
     color: #666;
 }
+.no-house-ling-word {
+    display: inline-block;
+    margin-left: 1rem;
+    color: #21b97a;
+}
