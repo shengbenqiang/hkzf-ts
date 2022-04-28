@@ -2,3 +2,33 @@
     width: 100%;
     height: 100%;
 }
+.rent-add-from-room {
+    width: 100%;
+    height: calc(100% - 4.5rem);
+    box-sizing: border-box;
+    padding: 1rem 1rem 0 1rem;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    box-sizing: border-box;
+}
+.rent-add-from-room::-webkit-scrollbar {
+    display: none;
+}
+.rent-list-header {
+    color: #21b97a;
+}
+.render-list-common-item {
+    height: 5rem;
+    line-height: 5rem;
+}
+.render-list-common-item .adm-list-item-content-prefix {
+    color: #999999;
+    font-size: 1.4rem;
+}
+.render-list-common-item .adm-list-item-content-extra {
+    color: #999999;
+    font-size: 1.4rem;
+}
+.rent-list-common-margin {
+    margin-top: 1rem;
+}

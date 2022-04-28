@@ -214,6 +214,8 @@ export interface PackageType {
 
 export interface HousePackageType {
     list: string[];
+    listItemClick?: (info: PackageType) => void;
+    selectList?: PackageType[];
 }
 
 export interface locate {
@@ -233,10 +235,21 @@ export interface userMenuType {
     to?: string;
 }
 
-// export interface AuthRouteType {
-//     componentPath: string;
-//     component: JSX.Element;
-// }
 export interface AuthRouteType {
     component: JSX.Element;
+}
+
+export interface areaType {
+    area: string;
+    areaName: string;
+    city: string;
+    cityName: string;
+    community: string;
+    communityName: string;
+    street: string;
+    streetName: string;
+}
+export interface areaInfoType {
+    id: string;
+    name: string;
 }

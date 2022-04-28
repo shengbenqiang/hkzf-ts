@@ -61,8 +61,12 @@ const HousePackage = (props: HousePackageType) => {
     ]
 
     const filterPackage = () => {
-        const listType = package_data.filter((itemPackage) => props.list.includes(itemPackage.name))
-        setListData(listType)
+        if (props.list.length) {
+            const listType = package_data.filter((itemPackage) => props.list.includes(itemPackage.name))
+            setListData(listType)
+        } else {
+            setListData(package_data)
+        }
     }
 
     useEffect(() => {
@@ -73,8 +77,8 @@ const HousePackage = (props: HousePackageType) => {
         <div className={"house-package-con"}>
             {
                 listData.map((itemPackage) => (
-                    <div className={"house-item-package-item"} key={itemPackage.id}>
-                        <SIcon icon={itemPackage.icon} size={2.8} />
+                    <div className={`house-item-package-item ${ props.selectList?.filter((value) => value.id === itemPackage.id).length ? 'house-item-select-package-item' : '' }`} key={itemPackage.id} onClick={() => props.listItemClick!(itemPackage)}>
+                        <SIcon icon={itemPackage.icon} size={2.5} />
                         <div className={"house-item-package-word"}>{ itemPackage.name }</div>
                     </div>
                 ))
