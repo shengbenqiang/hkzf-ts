@@ -41,7 +41,9 @@ const Login = () => {
 
     useEffect(() => {
         const newLocation: any = location
-        setFromPath(newLocation.state.from.pathname)
+        if (newLocation.state) {
+            setFromPath(newLocation.state.from.pathname)
+        }
     }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     return (

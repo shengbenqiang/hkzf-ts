@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import NavHeader from "../../components/NavHeader";
 import { useNavigate, useLocation } from "react-router-dom";
-import { List, Input, Picker, ImageUploader, TextArea } from "antd-mobile";
-import { areaInfoType, PackageType } from "../../untils/types";
+import {List, Input, Picker, ImageUploader, TextArea, Toast} from "antd-mobile";
+import { areaInfoType, PackageType, RentInfo } from "../../untils/types";
 import {PickerValue} from "antd-mobile/es/components/picker-view";
 import {ImageUploadItem} from "antd-mobile/es/components/image-uploader";
 import HousePackage from "../../components/HousePackage";
 import "./RentAdd.css";
+import api from "../../server/api";
 
 const RentAdd = () => {
 
@@ -54,7 +55,7 @@ const RentAdd = () => {
     const [ selectRoomType, setSelectRoomType ] = useState<PickerValue[]>([])
     const [ selectFloorType, setSelectFloorType ] = useState<PickerValue[]>([])
     const [ selectOrientedType, setSelectOrientedType ] = useState<PickerValue[]>([])
-    const [ houseImgList, setHouseImgList ] = useState([])
+    const [ houseImgList, setHouseImgList ] = useState<ImageUploadItem[]>([])
     const [ packList, setPackList ] = useState<PackageType[]>([])
     const [ houseDesc, setHouseDesc ] = useState<string>('')
 
@@ -74,14 +75,13 @@ const RentAdd = () => {
         setOrientedVisible(true)
     }
 
-    const handleHouseImg = (items: ImageUploadItem[]) => {
-        console.log(items)
-    }
-
-    const uploadHouseImg = (files: File): Promise<ImageUploadItem> => {
-        return new Promise<ImageUploadItem>((resolve) => {
-            console.log(files)
-        })
+    const uploadHouseImg = async (files: File) => {
+        const formData = new FormData()
+        formData.append('file', files)
+        const res = await api.uploadImg(formData)
+        return {
+            url: `http://localhost:8080${res.body[0]}`,
+        }
     }
 
     const handleItemPackageClick = (info: PackageType) => {
@@ -90,6 +90,35 @@ const RentAdd = () => {
         } else {
             setPackList([...packList, info])
         }
+    }
+
+    const handleAddRentHouse = () => {
+        const tempImgList: string[] = []
+        houseImgList.forEach((item) => {
+            const res = item.url.split('/uploads')
+            tempImgList.push('/uploads' + res[1])
+        })
+        const data: RentInfo = {
+            size: houseArea,
+            title: houseTitle,
+            price: rentPrice,
+            supporting: packList.map(item => item.name).join('|'),
+            description: houseDesc,
+            floor: selectFloorType[0] as string,
+            oriented: selectOrientedType[0] as string,
+            roomType: selectRoomType[0] as string,
+            houseImg: tempImgList.join('|'),
+            community: areaInfo.id,
+        }
+        console.log(data)
+        api.rentAdd(data).then((res) => {
+            if (res.status === 200) {
+                Toast.show('发布成功')
+                navigate('/rent')
+            } else {
+                Toast.show('服务器偷懒了，请稍后再试~')
+            }
+        })
     }
 
     useEffect(() => {
@@ -145,6 +174,7 @@ const RentAdd = () => {
                                 setPickerVisible(false)
                             }}
                             onConfirm={v => {
+                                console.log(v)
                                 setSelectRoomType(v)
                             }}
                         />
@@ -210,7 +240,7 @@ const RentAdd = () => {
                     <List.Item>
                         <ImageUploader
                             value={houseImgList}
-                            onChange={handleHouseImg}
+                            onChange={setHouseImgList}
                             upload={uploadHouseImg}
                             multiple={true}
                         />
@@ -247,6 +277,10 @@ const RentAdd = () => {
                         />
                     </List.Item>
                 </List>
+            </div>
+            <div className={"rent-add-operate-bottom-room"}>
+                <div className={"rent-add-item-operate-room"}>取消</div>
+                <div className={"rent-add-item-operate-room rent-add-special-item-operate"} onClick={handleAddRentHouse}>添加</div>
             </div>
         </div>
     )

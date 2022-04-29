@@ -253,3 +253,16 @@ export interface areaInfoType {
     id: string;
     name: string;
 }
+
+export interface RentInfo {
+    title: string;
+    description: string;
+    houseImg: string;
+    oriented: string;
+    supporting: string;
+    price: string;
+    roomType: string;
+    size: string;
+    floor: string;
+    community: string;
+}

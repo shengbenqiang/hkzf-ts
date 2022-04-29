@@ -3,6 +3,8 @@
     height: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
+    box-sizing: border-box;
+    padding-bottom: 6rem;
 }
 .house-detail-con::-webkit-scrollbar {
     display: none;

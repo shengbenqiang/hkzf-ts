@@ -1,5 +1,5 @@
 import axios from "axios";
-import {loginData, strObj} from "../untils/types";
+import {loginData, strObj, RentInfo} from "../untils/types";
 import {getToken, removeToken} from "../untils/auth";
 
 const http = axios.create({
@@ -25,7 +25,7 @@ http.interceptors.response.use((response) => {
     return Promise.reject(error)
 })
 
-const api =  {
+const api = {
     async getSwiper() {
         return await http.get("/home/swiper")
             .then((res) => {
@@ -207,7 +207,22 @@ const api =  {
             .then((res) => {
                 return res.data;
             })
+    },
+
+    async rentAdd(rentInfo: RentInfo) {
+        return http.post('/user/houses', rentInfo)
+            .then((res) => {
+                return res.data;
+            })
+    },
+
+    async uploadImg(formData: FormData) {
+        return http.post('/houses/image', formData, { headers: { 'Content-type': 'multipart/form-data' } })
+            .then((res) => {
+                return res.data;
+            })
     }
 }
+
 
 export default api;
